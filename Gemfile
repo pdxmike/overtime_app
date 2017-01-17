@@ -22,3 +22,6 @@ group :development do
   gem 'spring'
   gem 'better_errors'
 end
+
+# project specific gems
+gem 'devise', '~> 4.2'
