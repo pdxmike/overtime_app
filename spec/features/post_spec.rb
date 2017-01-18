@@ -17,6 +17,8 @@ describe 'Navigate' do
 
   describe 'Creation' do
     before do
+      user = User.create(email: 'test@test.com', password: 'testing', password_confirmation: 'testing', first_name: 'Jon', last_name: 'Snow')
+      login_as(user, :scope => :user)
       visit new_post_path
     end
 
@@ -27,10 +29,17 @@ describe 'Navigate' do
     it 'can be created from new form page' do
       fill_in 'post[date]', with: Date.today
       fill_in 'post[rationale]', with: 'Some Rationale'
-
       click_on 'Save'
 
       expect(page).to have_content('Some Rationale')
+    end
+
+    it 'will have a user associated to it' do
+      fill_in 'post[date]', with: Date.today
+      fill_in 'post[rationale]', with: 'User_Association'
+      click_on 'Save'
+
+      expect(User.last.posts.last.rationale).to eq('User_Association')
     end
   end
 end
