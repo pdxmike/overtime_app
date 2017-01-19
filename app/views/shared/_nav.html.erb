@@ -1,0 +1,22 @@
+<ul class='custom-nav nav nav-tabs'>
+	<li class='<%= active_page?(root_path) %>'>
+		<%= link_to 'Home', root_path %>
+	</li>
+	<li class='<%= active_page?(posts_path) %>'>
+		<%= link_to 'Time Entries', posts_path %>
+	</li>
+	<li class='dropdown pull-right'>
+		 <a href='#' data-toggle='dropdown' class='dropdown-toggle'>Account<strong class='caret'></strong></a>
+		<ul class='dropdown-menu'>
+      <li>
+    		<%= link_to 'Log In', new_user_session_path %>
+    	</li>
+			<li>
+				<%= link_to 'Edit Profile', edit_user_registration_path %>
+			</li>
+      <li>
+    		<%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+    	</li>
+		</ul>
+	</li>
+</ul>
