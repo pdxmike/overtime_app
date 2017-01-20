@@ -3,7 +3,7 @@
 #### Key Requirements: Company needs documentation that salaried employees did or did not get overtime each week
 
 ## Models
-- Post -> date:date rationale:text
+- ~~Post -> date:date rationale:text~~
 - ~~User -> Devise~~
 - ~~AdminUser -> STI~~
 
@@ -15,4 +15,8 @@
 - Needs to be documented if employee did not log overtime
 
 ## UI
-- Bootstrap
+- ~~Bootstrap~~
+
+## Refactor Todos
+- Add full_name method for users
+- Refactor user association integration test in post_spec
