@@ -1,7 +1,15 @@
 <h1>Posts</h1>
 
-<%- @posts.each do |post| %>
-  <h4>Rationale: <%= post.rationale %></h4>
-  <h5>Date: <%= post.date %></h5>
-  <hr />
-<% end %>
+<table class='table table-hover table-striped'>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Date</th>
+      <th>User</th>
+      <th>Rationale</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @posts %>
+  </tbody>
+</table>
