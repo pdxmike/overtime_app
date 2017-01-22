@@ -23,6 +23,17 @@ class PostsController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
+  def update
+    if @post.update(post_params)
+      redirect_to @post, notice: 'Your post was successfully updated'
+    else
+      render :edit
+    end
+  end
+
 private
   def post_params
     params.require(:post).permit(:date, :rationale)
