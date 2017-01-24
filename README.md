@@ -16,6 +16,7 @@
 
 ## UI
 - ~~Bootstrap~~
+- ~~Update Form Styling~~
 
 ## Refactor Todos
 - ~~Add full_name method for users~~
