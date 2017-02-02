@@ -20,10 +20,23 @@ describe 'Navigate' do
     end
 
     it 'has a list of Posts' do
-      post1 = FactoryGirl.create(:post)
-      post2 = FactoryGirl.create(:second_post)
+      post1 = Post.create(date: Date.today, rationale: 'Some rationale', user_id: @user.id)
+      post2 = Post.create(date: Date.today, rationale: 'super Potatoes', user_id: @user.id)
       visit posts_path
+
       expect(page).to have_content(/Some|super/)
+    end
+
+    it 'has a scope so that only post creators can see their posts' do
+      post1 = Post.create(date: Date.today, rationale: 'asdf', user_id: @user.id)
+      post2 = Post.create(date: Date.today, rationale: 'asdf', user_id: @user.id)
+
+      other_user = User.create(first_name: 'Non', last_name: 'Authorized', email: 'non_auth@test.com', password: 'testing', password_confirmation: 'testing')
+      post_from_another_user = Post.create(date: Date.today, rationale: 'post from other user', user_id: other_user.id)
+
+      visit posts_path
+
+      expect(page).to_not have_content(/post from other user/)
     end
   end
 
@@ -37,8 +50,9 @@ describe 'Navigate' do
   end
 
   describe 'Delete' do
-    it 'can be delete' do
+    it 'can be deleted' do
       @post = FactoryGirl.create(:post)
+      @post.update(user_id: @user.id)
       visit posts_path
       click_link("delete_post_#{@post.id}_from_index")
 
@@ -74,9 +88,9 @@ describe 'Navigate' do
 
   describe 'Edit' do
     before do
-      @edit_user = User.create(first_name: 'Test', last_name: 'User', email: 'testuser@test.com', password: 'testing', password_confirmation: 'testing')
+      @edit_user = User.create(first_name: "asdf", last_name: "asdf", email: "asdfasdf@asdf.com", password: "asdfasdf", password_confirmation: "asdfasdf")
       login_as(@edit_user, :scope => :user)
-      @edit_post = Post.create(date: Date.today, rationale: 'pootahtoez', user_id: @edit_user.id)
+      @edit_post = Post.create(date: Date.today, rationale: "asdf", user_id: @edit_user.id)
     end
 
     it 'can be edited' do

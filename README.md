@@ -24,3 +24,4 @@
 - ~~Add full_name method for users~~
 - Refactor user association integration test in post_spec
 - Modify post_spec:82 to use Factory
+- Modify post_spec:53 to use correct user reference without requiring .update

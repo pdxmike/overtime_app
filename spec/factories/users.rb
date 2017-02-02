@@ -23,7 +23,7 @@ FactoryGirl.define do
     first_name 'Non'
     last_name 'Authorized'
     email { generate :email }
-    password 'testing'
-    password_confirmation 'testing'
+    password "asdfasdf"
+    password_confirmation "asdfasdf"
   end
 end
