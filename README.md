@@ -23,3 +23,4 @@
 ## Refactor Todos
 - ~~Add full_name method for users~~
 - Refactor user association integration test in post_spec
+- Modify post_spec:82 to use Factory
