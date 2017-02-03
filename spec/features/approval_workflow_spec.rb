@@ -6,7 +6,7 @@ describe 'Navigate' do
     login_as(@admin_user, :scope => :user)
   end
 
-  describe 'edit' do
+  describe 'Edit' do
     before do
       @post = FactoryGirl.create(:post)
     end
@@ -26,6 +26,21 @@ describe 'Navigate' do
       visit edit_post_path(@post)
 
       expect(page).to_not have_content('approved')
+    end
+
+    it 'cannot be edited after it has been approved' do
+      logout(:user)
+      login_as(@admin_user, :scope => :user)
+
+      @post.update(status: 'approved')
+      logout(@admin_user)
+
+      user = FactoryGirl.create(:user)
+      login_as(user, :scope => :user)
+      visit edit_post_path(@post)
+
+
+      expect(current_path).to eq(root_path)
     end
   end
 end
