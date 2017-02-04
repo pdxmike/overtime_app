@@ -7,6 +7,7 @@ gem "gritter", "1.2.0"
 gem "administrate", "~> 0.2.2"
 gem 'bourbon'
 gem 'pundit', '~> 1.1'
+gem 'puma', '~> 3.7'
 
 gem 'rails', '4.2.6'
 gem 'pg', '~> 0.15'
