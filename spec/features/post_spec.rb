@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Navigate' do
   let(:user) { FactoryGirl.create(:user) }
   let(:post) do
-    Post.create(date: Date.today, rationale: 'This is a rationale', user_id: user.id)
+    Post.create(date: Date.today, rationale: 'This is a rationale', overtime_request: 4.5, user_id: user.id)
   end
 
   before do
@@ -24,8 +24,8 @@ describe 'Navigate' do
     end
 
     it 'has a list of Posts' do
-      post1 = Post.create(date: Date.today, rationale: 'Some rationale', user_id: user.id)
-      post2 = Post.create(date: Date.today, rationale: 'super Potatoes', user_id: user.id)
+      post1 = Post.create(date: Date.today, rationale: 'Some rationale', overtime_request: 4.5, user_id: user.id)
+      post2 = Post.create(date: Date.today, rationale: 'super Potatoes', overtime_request: 4.5, user_id: user.id)
       visit posts_path
 
       expect(page).to have_content(/Some|super/)
@@ -33,7 +33,7 @@ describe 'Navigate' do
 
     it 'has a scope so that only post creators can see their posts' do
       other_user = User.create(first_name: 'Non', last_name: 'Authorized', email: 'non_auth@test.com', password: 'testing', password_confirmation: 'testing')
-      post_from_another_user = Post.create(date: Date.today, rationale: 'post from other user', user_id: other_user.id)
+      post_from_another_user = Post.create(date: Date.today, rationale: 'post from other user', overtime_request: 4.5, user_id: other_user.id)
 
       visit posts_path
 
@@ -55,7 +55,7 @@ describe 'Navigate' do
       logout(:user)
       delete_user = FactoryGirl.create(:user)
       login_as(delete_user, :scope => :user)
-      post_to_delete = Post.create(date: Date.today, rationale: 'bleh', user_id: delete_user.id)
+      post_to_delete = Post.create(date: Date.today, rationale: 'bleh', overtime_request: 4.5, user_id: delete_user.id)
       visit posts_path
       click_link("delete_post_#{post_to_delete.id}_from_index")
 
@@ -75,14 +75,15 @@ describe 'Navigate' do
     it 'can be created from new form page' do
       fill_in 'post[date]', with: Date.today
       fill_in 'post[rationale]', with: 'Some Rationale'
-      click_on 'Save'
+      fill_in 'post[overtime_request]', with: 4.5
 
-      expect(page).to have_content('Some Rationale')
+      expect { click_on 'Save' }.to change(Post, :count).by(1)
     end
 
     it 'will have a user associated to it' do
       fill_in 'post[date]', with: Date.today
       fill_in 'post[rationale]', with: 'User_Association'
+      fill_in 'post[overtime_request]', with: 4.5
       click_on 'Save'
 
       expect(User.last.posts.last.rationale).to eq('User_Association')
@@ -94,6 +95,7 @@ describe 'Navigate' do
       visit edit_post_path(post)
       fill_in 'post[date]', with: Date.today
       fill_in 'post[rationale]', with: 'Edited Content'
+      fill_in 'post[overtime_request]', with: 4.5
       click_on 'Save'
 
       expect(page).to have_content('Edited Content')
