@@ -1,2 +1,10 @@
-<p><%= @post.date %></p>
-<p><%= @post.rationale %></p>
+<div class="col-sm-6 col-sm-offset-3 well">
+  <h3>Employee: <%= @post.user.full_name %></h3>
+  <h3>Date: <%= @post.date %></h3>
+  <h3>Hours: <%= @post.overtime_request %></h3>
+  <h3>Rationale: <%= @post.rationale %></h3>
+  <hr>
+  <h5>Status: <%= @post.status %></h5>
+  <hr>
+  <h5><%= link_to 'Edit Entry', edit_post_path(@post),  class: 'btn btn-primary' if policy(@post).update? %></h5>
+</div>
