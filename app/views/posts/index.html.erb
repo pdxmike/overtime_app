@@ -13,11 +13,11 @@
       <th></th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id="posts">
     <%= render @posts %>
   </tbody>
 </table>
 
-<div class="text-center">
-  <%= paginate @posts %>
+<div class="text-center" id="paginator">
+  <%= paginate @posts, remote: true %>
 </div>
