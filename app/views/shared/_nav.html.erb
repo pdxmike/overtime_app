@@ -8,6 +8,14 @@
 	<li class='<%= active_page?(new_post_path) %>'>
 		<%= link_to 'Add New Entry', new_post_path, id: 'new_post_from_nav' %>
 	</li>
+  <% if current_user && current_user.type == 'AdminUser' %>
+  	<li class='<%= active_page?(audit_logs_path) %>'>
+  		<%= link_to 'OT Audit Log', audit_logs_path %>
+  	</li>
+    <li>
+      <%= link_to 'Admin Dashboard', admin_root_path %>
+    </li>
+  <% end %>
 	<li class='dropdown pull-right'>
 		 <a href='#' data-toggle='dropdown' class='dropdown-toggle'>Account<strong class='caret'></strong></a>
 		<ul class='dropdown-menu'>
@@ -15,11 +23,6 @@
         <li>
           <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
         </li>
-        <% if current_user.type == 'AdminUser' %>
-          <li>
-            <%= link_to 'Admin Dashboard', admin_root_path %>
-          </li>
-        <% end %>
       <% else %>
         <li>
       		<%= link_to 'Log In', new_user_session_path %>
