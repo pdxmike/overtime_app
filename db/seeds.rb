@@ -13,12 +13,12 @@ puts '1 admin user created'
                     first_name: 'Jon',
                     last_name: 'Snow',
                     phone: "5555555555")
-                    
+
 puts '1 user created'
 
 
 100.times do |post|
-  Post.create!(date: Date.today, rationale: "#{post} rationale content", overtime_request: 2.5, user_id: @user.id)
+  Post.create!(date: Date.today, rationale: "#{post} rationale content It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that", overtime_request: 2.5, user_id: @user.id)
 end
 
 puts "100 Posts have been created!"
