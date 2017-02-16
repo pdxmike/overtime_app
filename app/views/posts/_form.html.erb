@@ -18,6 +18,15 @@
         <label for="rationale">Rationale:</label>
         <%= f.text_area :rationale, class: "form-control" %>
       </div>
+      <% if admin_types.include?(current_user.try(:type)) %>
+        <div class="form-group">
+          <label for="status">Status:</label>
+          <%= f.select :status, Post.statuses.keys, class: "form-control" %>
+        </div>
+      <% else %>
+        <% @post.status = 'submitted' %>
+      <% end %>
+
       <div class="form-group">
         <%= f.submit 'Save', class: 'btn btn-primary btn-block' %>
       </div>

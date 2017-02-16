@@ -5,7 +5,7 @@
   <p><strong>Rationale:</strong> <%= truncate(pending_approval.rationale, length: 60)%></p>
   <div class="row">
     <div class="col-md-6"><%= link_to 'Approve', root_path, class: 'btn btn-success' %></div>
-    <div class="col-md-6"><%= link_to 'Review', root_path, class: 'btn btn-warning' %></div>
+    <div class="col-md-6"><%= link_to 'Review', edit_post_path(pending_approval), class: 'btn btn-warning' %></div>
   </div>
 </div>
 <% end %>

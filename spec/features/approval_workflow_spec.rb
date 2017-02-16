@@ -12,9 +12,9 @@ describe 'Navigate' do
     end
 
     it 'has a status that can be edited on the form' do
-      visit edit_admin_post_path(@post)
+      visit edit_post_path(@post)
       select('approved', :from => 'post_status')
-      click_button('Update Post')
+      click_button('Save')
 
       expect(@post.reload.status).to eq('approved')
     end
