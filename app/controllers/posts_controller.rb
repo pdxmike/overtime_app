@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :post_find, only: [:show, :update, :edit, :destroy]
+  before_action :post_find, only: [:show, :update, :edit, :destroy, :approve]
 
   def index
     @posts = Post.posts_by(current_user).page(params[:page]).per(15)
@@ -34,6 +34,12 @@ class PostsController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def approve
+    authorize @post
+    @post.approved!
+    redirect_to root_path, notice: 'The OT Request has been approved'
   end
 
   def destroy
