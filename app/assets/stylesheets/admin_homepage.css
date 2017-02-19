@@ -16,3 +16,7 @@
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
+
+.homepage-block:hover {
+  background-color: #172e6d;
+}
