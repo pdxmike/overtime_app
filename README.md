@@ -8,13 +8,13 @@
 - ~~AdminUser -> STI~~
 
 ## Features:
-- Approval Workflow
+- ~~Approval Workflow~~
 - SMS Sending -> link to approval or overtime input
 - ~~Admin Dashboard~~
 - ~~Block non-admin from viewing admin dashboard~~
 - ~~Block non-admin users from seeing admin navigation options~~
 - Email summary to managers for approval
-- Needs to be documented if employee did not log overtime
+- ~~Needs to be documented if employee did not log overtime~~
 
 ## UI
 - ~~Bootstrap~~
