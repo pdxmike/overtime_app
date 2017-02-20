@@ -6,7 +6,7 @@
 		<%= link_to 'Time Entries', posts_path %>
 	</li>
 	<li class='<%= active_page?(new_post_path) %>'>
-		<%= link_to 'Add New Entry', new_post_path, id: 'new_post_from_nav' %>
+		<%= link_to 'Request Overtime', new_post_path, id: 'new_post_from_nav' %>
 	</li>
   <% if current_user && current_user.type == 'AdminUser' %>
   	<li class='<%= active_page?(audit_logs_path) %>'>

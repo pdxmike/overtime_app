@@ -1,11 +1,14 @@
 <div class="container-fluid">
+	<% if @employee_pending_confirmations.count > 0 %>
+	  <div class="pending-homepage row">
+	  	<h2>Pending Your Confirmation</h2>
+			<hr>
+			<%= render partial: 'employee_pending_confirmations', locals: { employee_pending_confirmations: @employee_pending_confirmations } %>
+	  </div>
+	<% end %>
   <div class="pending-homepage row">
-  	<h2>Pending Your Confirmation</h2>
-		<hr>
-
-		<%= render partial: 'employee_pending_confirmations', locals: { employee_pending_confirmations: @employee_pending_confirmations } %>
-  </div>
-  <div class="pending-homepage row">
-  	a
+  	<h2>Request Overtime</h2>
+  	<hr>
+  	<%= link_to "Request Overtime Approval", new_post_path, class: 'btn btn-primary btn-block btn-lg' %>
   </div>
 </div>
