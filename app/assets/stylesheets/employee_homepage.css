@@ -1,0 +1,8 @@
+.employee-block {
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #E3E3E3;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}

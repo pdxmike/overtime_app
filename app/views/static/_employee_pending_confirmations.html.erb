@@ -1,0 +1,3 @@
+<% employee_pending_confirmations.each do |employee_pending_confirmation| %>
+	<%= link_to "I did not work any overtime for the week of: #{employee_pending_confirmation.start_date}", root_path, class: 'btn btn-block btn-primary btn-lg', data: { confirm: 'Officially verify?' } %>
+<% end %>
