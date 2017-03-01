@@ -23,20 +23,23 @@ class EmployeeDashboard < Administrate::BaseDashboard
     updated_at: Field::DateTime.with_options(searchable: false),
     type: Field::String.with_options(searchable: false),
     phone: Field::String.with_options(searchable: false),
+    ssn: Field::String.with_options(searchable: true),
+    company: Field::String.with_options(searchable: false),
   }.freeze
 
   COLLECTION_ATTRIBUTES = [
     :email,
     :posts,
-    :type,
+    :ssn,
   ].freeze
 
   SHOW_PAGE_ATTRIBUTES = [
-    :posts,
     :email,
     :first_name,
     :last_name,
     :phone,
+    :ssn,
+    :company,
     :sign_in_count,
     :current_sign_in_at,
     :last_sign_in_at,
@@ -45,6 +48,7 @@ class EmployeeDashboard < Administrate::BaseDashboard
     :created_at,
     :updated_at,
     :type,
+    :posts,
   ].freeze
 
   FORM_ATTRIBUTES = [
@@ -53,6 +57,8 @@ class EmployeeDashboard < Administrate::BaseDashboard
     :first_name,
     :last_name,
     :phone,
+    :ssn,
+    :company,
   ].freeze
 
   # Overwrite this method to customize how users are displayed
