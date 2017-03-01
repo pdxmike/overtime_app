@@ -1,7 +1,7 @@
 <% pending_approvals.each do |pending_approval| %>
 <div class="homepage-block col-md-3">
   <h4><%= pending_approval.user.full_name %></h4>
-  <p><strong>OT Date:</strong> <%= pending_approval.date %></p>
+  <p><strong>Date:</strong> <%= pending_approval.date %></p>
   <p><strong>Rationale:</strong> <%= truncate(pending_approval.rationale, length: 60)%></p>
   <div class="row">
     <div class="col-md-6">

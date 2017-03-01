@@ -28,7 +28,7 @@ AuditLog.create!(user_id: @employee.id, status: 0, start_date: (Date.today - 20.
 puts "3 Audit Logs have been created!"
 
 50.times do |post|
-  Post.create!(date: Date.today, rationale: "#{post} rationale content It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that", overtime_request: 2.5, user_id: @employee.id)
+  Post.create!(date: Date.today, rationale: "#{post} rationale content It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that", daily_hours: 12.5, user_id: @employee.id)
 end
 
 puts "50 Posts have been created!"
