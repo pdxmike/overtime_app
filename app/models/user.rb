@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :hands_associations, class_name: 'Hand'
   has_many :hands, through: :hands_associations
 
-  validates_presence_of :first_name, :last_name, :phone
+  validates_presence_of :first_name, :last_name, :phone, :ssn, :company
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   validates_format_of :phone, with: PHONE_REGEX
 
   validates :phone, length: { is: 10 }
+  validates :ssn, length: { is: 4 }
+  validates_numericality_of :ssn
 
   def full_name
     last_name.upcase + ', ' + first_name.upcase

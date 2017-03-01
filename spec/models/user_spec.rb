@@ -42,6 +42,36 @@ RSpec.describe User, type: :model do
 
       expect(@user).to_not be_valid
     end
+
+    it 'requires ssn' do
+      @user.ssn = nil
+
+      expect(@user).to_not be_valid
+    end
+
+    it 'requires the ssn attr to only contain integers' do
+      @user.ssn = '1234b'
+
+      expect(@user).to_not be_valid
+    end
+
+    it 'requires the ssn attr to not be more than 4 chars' do
+      @user.ssn = '12345'
+
+      expect(@user).to_not be_valid
+    end
+
+    it 'requires the ssn attr to not be less than 4 chars' do
+      @user.ssn = '123'
+
+      expect(@user).to_not be_valid
+    end
+
+    it 'requires a company' do
+      @user.company = nil
+
+      expect(@user).to_not be_valid
+    end
   end
 
   describe 'Custom name methods' do
