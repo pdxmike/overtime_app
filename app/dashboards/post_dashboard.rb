@@ -12,7 +12,7 @@ class PostDashboard < Administrate::BaseDashboard
     id: Field::Number.with_options(searchable: false),
     date: Field::DateTime.with_options(searchable: false),
     daily_hours: Field::Text.with_options(searchable: false),
-    rationale: Field::Text.with_options(searchable: true),
+    work_performed: Field::Text.with_options(searchable: true),
     created_at: Field::DateTime.with_options(searchable: false),
     updated_at: Field::DateTime.with_options(searchable: false),
     status: Field::Select.with_options(collection: Post.statuses.keys, searchable: false),
@@ -28,7 +28,7 @@ class PostDashboard < Administrate::BaseDashboard
     :status,
     :date,
     :daily_hours,
-    :rationale,
+    :work_performed,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -38,7 +38,7 @@ class PostDashboard < Administrate::BaseDashboard
     :status,
     :date,
     :daily_hours,
-    :rationale,
+    :work_performed,
     :created_at,
     :updated_at,
   ].freeze
@@ -50,7 +50,7 @@ class PostDashboard < Administrate::BaseDashboard
     :user,
     :date,
     :daily_hours,
-    :rationale,
+    :work_performed,
     :status,
   ].freeze
 

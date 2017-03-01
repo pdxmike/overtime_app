@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Navigate' do
   let(:user) { FactoryGirl.create(:user) }
   let(:post) do
-    Post.create(date: Date.today, rationale: 'This is a rationale', daily_hours: 4.5, user_id: user.id)
+    Post.create(date: Date.today, work_performed: 'This is a work_performed', daily_hours: 4.5, user_id: user.id)
   end
 
   before do
@@ -24,8 +24,8 @@ describe 'Navigate' do
     end
 
     it 'has a list of Posts' do
-      post1 = Post.create(date: Date.today, rationale: 'Some rationale', daily_hours: 4.5, user_id: user.id)
-      post2 = Post.create(date: Date.today, rationale: 'super Potatoes', daily_hours: 4.5, user_id: user.id)
+      post1 = Post.create(date: Date.today, work_performed: 'Some work_performed', daily_hours: 4.5, user_id: user.id)
+      post2 = Post.create(date: Date.today, work_performed: 'super Potatoes', daily_hours: 4.5, user_id: user.id)
       visit posts_path
 
       expect(page).to have_content(/Some|super/)
@@ -34,7 +34,7 @@ describe 'Navigate' do
     it 'has a scope so that only post creators can see their posts' do
       other_user = User.create(first_name: 'Non', last_name: 'Authorized', email: 'non_auth@test.com',
                                 password: 'testing', password_confirmation: 'testing', phone: '5555555555')
-      post_from_another_user = Post.create(date: Date.today, rationale: 'post from other user', daily_hours: 4.5, user_id: other_user.id)
+      post_from_another_user = Post.create(date: Date.today, work_performed: 'post from other user', daily_hours: 4.5, user_id: other_user.id)
 
       visit posts_path
 
@@ -59,7 +59,7 @@ describe 'Navigate' do
       logout(:user)
       delete_user = FactoryGirl.create(:user)
       login_as(delete_user, :scope => :user)
-      post_to_delete = Post.create(date: Date.today, rationale: 'bleh', daily_hours: 4.5, user_id: delete_user.id)
+      post_to_delete = Post.create(date: Date.today, work_performed: 'bleh', daily_hours: 4.5, user_id: delete_user.id)
       visit posts_path
       click_link("delete_post_#{post_to_delete.id}_from_index")
 
@@ -78,7 +78,7 @@ describe 'Navigate' do
 
     it 'can be created from new form page' do
       fill_in 'post[date]', with: Date.today
-      fill_in 'post[rationale]', with: 'Some Rationale'
+      fill_in 'post[work_performed]', with: 'Some work_performed'
       fill_in 'post[daily_hours]', with: 4.5
 
       expect { click_on 'Save' }.to change(Post, :count).by(1)
@@ -86,11 +86,11 @@ describe 'Navigate' do
 
     it 'will have a user associated to it' do
       fill_in 'post[date]', with: Date.today
-      fill_in 'post[rationale]', with: 'User_Association'
+      fill_in 'post[work_performed]', with: 'User_Association'
       fill_in 'post[daily_hours]', with: 4.5
       click_on 'Save'
 
-      expect(User.last.posts.last.rationale).to eq('User_Association')
+      expect(User.last.posts.last.work_performed).to eq('User_Association')
     end
   end
 
@@ -98,7 +98,7 @@ describe 'Navigate' do
     it 'can be edited' do
       visit edit_post_path(post)
       fill_in 'post[date]', with: Date.today
-      fill_in 'post[rationale]', with: 'Edited Content'
+      fill_in 'post[work_performed]', with: 'Edited Content'
       fill_in 'post[daily_hours]', with: 4.5
       click_on 'Save'
 
